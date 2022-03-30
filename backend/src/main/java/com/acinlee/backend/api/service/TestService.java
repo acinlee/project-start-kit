@@ -22,7 +22,7 @@ public class TestService {
     }
 
     public boolean login(String userId, String userPw) {
-        TestEntity test = testRepository.findById(userId).orElse(null);
+        TestEntity test = this.getUser(userId);
         if( test != null ) {
             if ( (userPw).equals(test.getUserPw())) {
                 return true;
@@ -34,10 +34,8 @@ public class TestService {
         }
     }
 
-
-    public Optional<TestEntity> getUser(String userId) {
-        Optional<TestEntity> testObject = testRepository.findById(userId);
-
-        return testRepository.findById(userId);
+    public TestEntity getUser(String userId) {
+        TestEntity user = testRepository.findById(userId).orElse(null);
+        return user;
     }
 }
